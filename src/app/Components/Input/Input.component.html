@@ -1,0 +1,19 @@
+<form [formGroup]="validateInputs" (ngSubmit)="onSubmit()">
+        <input class="form-control mx-auto w-50" 
+               type="text" 
+               placeholder="Escribir una tarea"
+               (keyup.enter)="onSubmit()"
+               id="task" 
+               formControlName="task"
+               maxlength="50"
+               #taskInput>
+      
+        <div *ngIf="task?.invalid && task?.touched">
+                <small *ngIf="task?.hasError('required')" class="small-error">
+                  Ingrese una tarea
+                </small>
+                <small *ngIf="task?.hasError('minlength')" class="small-error">
+                  La tarea debe tener al menos 5 caracteres
+                </small>
+        </div>
+</form>

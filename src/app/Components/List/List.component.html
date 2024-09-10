@@ -1,0 +1,30 @@
+
+@if(listTask.length == 0){
+  <ul class="list-group py-2 mx-auto w-50">
+      <li class="list-group-item shadow bg-body-tertiary"> No existen tareas </li>
+  </ul>
+}
+@else {
+  <ul class="list-group py-2 mx-auto w-50">
+    @for (list of listTask; track $index) {
+      <li class="list-group-item d-flex shadow
+                 justify-content-between"
+                 [ngClass]="{'completeColor': list.complete}"
+                 [@shrinkOut]="'in'">
+        <input class="form-check-input my-auto"
+              [ngClass]="{'task-white': list.complete}"
+              type="checkbox" 
+              (change)="completeTask(list.id)"
+              [checked]="list.complete">
+        <label class="form-check-label my-auto" 
+                for="flexCheckChecked">
+                {{ list.task }}
+        </label>
+        <mat-icon fontIcon="delete_outline"
+                  class="my-auto iconDelete"
+                  (click)="removeTask(list.id)">
+        </mat-icon>
+      </li>
+    }
+  </ul>
+}
